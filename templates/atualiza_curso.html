@@ -1,0 +1,33 @@
+{%extends 'base.html'%}
+
+{% block conteudo %}
+
+<h1 style="text-align: center;">Atualizar Curso</h1>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    <ul class="alert alert-success">
+    {% for category, message in messages %}
+      <li class="{{ category }}">{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+
+
+
+<form action="{{url_for('atualiza_curso', id=curso.id)}}" method="POST" class="form-control" required >
+    <label>Nome</label>
+    <input class="form-control" type="text", name="nome" value="{{curso.nome}}"  required >
+    <label>Descrição</label>
+    <textarea class="form-control"  name="descricao" required> {{curso.descricao}} </textarea>
+    <label>Carga Horária</label>
+    <input class="form-control" type="text", name="ch" value="{{curso.ch}}" required>
+    <button class="btn btn-primary">Atualizar</button>
+
+
+</form>
+
+
+
+{%endblock conteudo%}
